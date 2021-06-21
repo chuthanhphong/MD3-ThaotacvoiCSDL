@@ -8,6 +8,6 @@ select order1.oID,product.pName,product.pID,orderdetail.oID,orderdetail.pID from
  
  select * from customer where customer.cID not in (select cid from order1) ;
  
- Alter table orderdetail add Total int;
- 
- select orderdetail.oId,order1.oDate,orderdetail.total from 
+ select orderdetail.oId,order1.oDate,product.pName,product.pPrice,orderdetail.odQTY,product.pPrice*orderdetail.odQTY as total
+ from order1,product,orderdetail
+ where order1.oID = orderdetail.oID and product.pID = orderdetail.pID;
